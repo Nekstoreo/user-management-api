@@ -70,8 +70,54 @@ Content-Type: application/json
 {
   "name": "Juan Pérez",
   "email": "juan@ejemplo.com",
-  "password": "123456",
-  "phone": "+34123456789"
+  "password": "Abc123!@#",
+  "phone": "1234567890"
+}
+```
+
+#### Respuestas de Registro
+
+```json
+// Éxito (201 Created)
+{
+  "message": "Usuario registrado exitosamente",
+  "code": "REGISTRATION_SUCCESS",
+  "data": {
+    "userId": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Juan Pérez",
+    "email": "juan@ejemplo.com"
+  }
+}
+
+// Error - Campos Faltantes (400 Bad Request)
+{
+  "error": "Todos los campos son requeridos",
+  "code": "MISSING_FIELDS"
+}
+
+// Error - Validación (400 Bad Request)
+{
+  "error": "Error de validación",
+  "code": "VALIDATION_ERROR",
+  "details": [
+    {
+      "msg": "La contraseña debe tener al menos 8 caracteres...",
+      "param": "password",
+      "location": "body"
+    }
+  ]
+}
+
+// Error - Email Duplicado (409 Conflict)
+{
+  "error": "El correo electrónico ya está registrado",
+  "code": "EMAIL_EXISTS"
+}
+
+// Error del Servidor (500 Internal Server Error)
+{
+  "error": "Error en el servidor",
+  "code": "SERVER_ERROR"
 }
 ```
 
@@ -84,6 +130,44 @@ Content-Type: application/json
 {
   "email": "juan@ejemplo.com",
   "password": "123456"
+}
+```
+
+#### Respuestas de Login
+
+```json
+// Éxito (200 OK)
+{
+  "token": "eyJhbGciOiJIUzI1...",
+  "user": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Juan Pérez",
+    "email": "juan@ejemplo.com"
+  }
+}
+
+// Error - Credenciales Faltantes (400 Bad Request)
+{
+  "error": "Email y contraseña son requeridos",
+  "code": "MISSING_CREDENTIALS"
+}
+
+// Error - Usuario No Encontrado (401 Unauthorized)
+{
+  "error": "El usuario no está registrado",
+  "code": "USER_NOT_FOUND"
+}
+
+// Error - Contraseña Incorrecta (401 Unauthorized)
+{
+  "error": "Contraseña incorrecta",
+  "code": "INVALID_PASSWORD"
+}
+
+// Error del Servidor (500 Internal Server Error)
+{
+  "error": "Error en el servidor",
+  "code": "SERVER_ERROR"
 }
 ```
 

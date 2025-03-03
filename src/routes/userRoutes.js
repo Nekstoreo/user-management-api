@@ -40,15 +40,31 @@ router.post('/register',
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       await logger.log('ERROR', 'Validation failed in register', { errors: errors.array() });
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ 
+        error: 'Error de validación',
+        code: 'VALIDATION_ERROR',
+        details: errors.array()
+      });
     }
 
     try {
       const { name, email, password, phone } = req.body;
+
+      // Validar campos requeridos
+      if (!name || !email || !password || !phone) {
+        await logger.log('ERROR', 'Missing required fields in registration');
+        return res.status(400).send({
+          error: 'Todos los campos son requeridos',
+          code: 'MISSING_FIELDS'
+        });
+      }
       
       if (database.getUser(email)) {
         await logger.log('WARN', 'Registration attempt with existing email', { email });
-        return res.status(400).send({ error: 'Email already registered' });
+        return res.status(409).send({ 
+          error: 'El correo electrónico ya está registrado',
+          code: 'EMAIL_EXISTS'
+        });
       }
 
       const hashedPassword = await bcrypt.hash(password, 8);
@@ -63,12 +79,20 @@ router.post('/register',
       await logger.log('INFO', 'New user registered', { userId, email });
       
       res.status(201).send({ 
-        message: 'User registered successfully',
-        userId 
+        message: 'Usuario registrado exitosamente',
+        code: 'REGISTRATION_SUCCESS',
+        data: {
+          userId,
+          name,
+          email
+        }
       });
     } catch (error) {
       await logger.log('ERROR', 'Registration failed', { error: error.message });
-      res.status(500).send({ error: 'Server error' });
+      res.status(500).send({ 
+        error: 'Error en el servidor',
+        code: 'SERVER_ERROR'
+      });
     }
   }
 );
@@ -76,21 +100,54 @@ router.post('/register',
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    // Validar que se proporcionaron email y password
+    if (!email || !password) {
+      await logger.log('WARN', 'Login attempt without credentials', { email });
+      return res.status(400).send({ 
+        error: 'Email y contraseña son requeridos',
+        code: 'MISSING_CREDENTIALS'
+      });
+    }
+
     const user = database.getUser(email);
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      await logger.log('WARN', 'Failed login attempt', { email });
-      return res.status(401).send({ error: 'Invalid credentials' });
+    // Usuario no existe
+    if (!user) {
+      await logger.log('WARN', 'Login attempt with non-existent user', { email });
+      return res.status(401).send({ 
+        error: 'El usuario no está registrado',
+        code: 'USER_NOT_FOUND'
+      });
+    }
+
+    // Contraseña incorrecta
+    if (!(await bcrypt.compare(password, user.password))) {
+      await logger.log('WARN', 'Failed login attempt - invalid password', { email });
+      return res.status(401).send({ 
+        error: 'Contraseña incorrecta',
+        code: 'INVALID_PASSWORD'
+      });
     }
 
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
     user.token = token;
     
-    await logger.log('INFO', 'User logged in', { userId: user.id });
-    res.send({ token });
+    await logger.log('INFO', 'User logged in successfully', { userId: user.id });
+    res.send({ 
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+    });
   } catch (error) {
     await logger.log('ERROR', 'Login error', { error: error.message });
-    res.status(500).send({ error: 'Server error' });
+    res.status(500).send({ 
+      error: 'Error en el servidor',
+      code: 'SERVER_ERROR'
+    });
   }
 });
 
