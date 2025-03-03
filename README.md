@@ -37,7 +37,17 @@ Editar el archivo `.env`:
 ```properties
 PORT=3000
 JWT_SECRET=tu_clave_secreta_jwt
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
 ```
+
+### Configuración de CORS
+
+El API tiene CORS habilitado con las siguientes características:
+- Orígenes permitidos configurables via ALLOWED_ORIGINS
+- Métodos HTTP permitidos: GET, POST, PUT, DELETE, OPTIONS
+- Headers permitidos: Content-Type, Authorization
+- Soporte para credenciales
+- Cache de preflight: 24 horas
 
 ## Uso
 
