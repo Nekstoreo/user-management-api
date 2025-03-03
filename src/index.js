@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
+import healthRoutes from './routes/healthRoutes.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api/users', userRoutes);
+app.use('/health', healthRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -212,6 +212,28 @@ Respuestas posibles:
 }
 ```
 
+### Health Check
+
+```bash
+GET /health
+
+# Respuesta exitosa (200 OK)
+{
+  "status": "UP",
+  "timestamp": "2024-02-20T15:30:45.123Z",
+  "version": "1.0.0",
+  "uptime": 3600,
+  "memoryUsage": 45.32
+}
+
+# Error (500 Internal Server Error)
+{
+  "status": "ERROR",
+  "timestamp": "2024-02-20T15:30:45.123Z",
+  "error": "Error al obtener información del sistema"
+}
+```
+
 ## Estructura del Proyecto
 
 ```
