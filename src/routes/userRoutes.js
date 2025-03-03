@@ -91,4 +91,41 @@ router.get('/profile', auth, (req, res) => {
   res.send(userProfile);
 });
 
+router.post('/validate-token', async (req, res) => {
+  try {
+    const token = req.body.token || req.header('Authorization')?.replace('Bearer ', '');
+    
+    if (!token) {
+      return res.status(400).send({ 
+        valid: false, 
+        error: 'Token no proporcionado' 
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = database.getUser(decoded.email);
+
+    if (!user) {
+      return res.status(401).send({ 
+        valid: false, 
+        error: 'Token inválido' 
+      });
+    }
+
+    res.send({ 
+      valid: true, 
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name
+      }
+    });
+  } catch (error) {
+    res.status(401).send({ 
+      valid: false, 
+      error: 'Token inválido o expirado' 
+    });
+  }
+});
+
 export default router;

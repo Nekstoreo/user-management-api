@@ -84,6 +84,40 @@ GET /api/users/profile
 Authorization: Bearer <token>
 ```
 
+### Validación de Token
+
+```bash
+POST /api/users/validate-token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIs..."
+}
+
+# O usando el header:
+POST /api/users/validate-token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+```
+
+Respuestas posibles:
+```json
+// Éxito
+{
+  "valid": true,
+  "user": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "email": "juan@ejemplo.com",
+    "name": "Juan Pérez"
+  }
+}
+
+// Error
+{
+  "valid": false,
+  "error": "Token inválido o expirado"
+}
+```
+
 ## Estructura del Proyecto
 
 ```
