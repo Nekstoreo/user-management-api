@@ -15,7 +15,7 @@ pnpm-lock.yaml
 .env.*.local
 
 # Logs
-logs
+logs/
 *.log
 
 # Runtime data
