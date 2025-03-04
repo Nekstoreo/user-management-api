@@ -101,12 +101,26 @@ class RoomsDatabase {
   }
 
   async filterRooms(filters) {
-    let rooms = await this.getAllRooms();
+    let rooms = [];
     
-    if (filters.category) {
-      rooms = rooms.filter(room => room.category === filters.category);
+    // Si hay un filtro de categoría, solo buscar en esa categoría
+    if (filters.category && this.categories[filters.category]) {
+      rooms = this.categories[filters.category].rooms.map(room => ({
+        ...room,
+        category: this.categories[filters.category].name
+      }));
+    } else {
+      // Si no hay filtro de categoría, obtener todas las salas
+      rooms = Object.entries(this.categories).reduce((allRooms, [categoryKey, category]) => {
+        const categoryRooms = category.rooms.map(room => ({
+          ...room,
+          category: category.name
+        }));
+        return allRooms.concat(categoryRooms);
+      }, []);
     }
-    
+
+    // Aplicar filtros adicionales
     if (filters.status) {
       rooms = rooms.filter(room => room.status === filters.status);
     }
@@ -119,7 +133,7 @@ class RoomsDatabase {
     if (filters.capacity) {
       rooms = rooms.filter(room => room.capacity >= filters.capacity);
     }
-    
+
     return rooms;
   }
 
