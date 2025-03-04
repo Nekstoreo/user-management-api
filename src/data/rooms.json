@@ -4,10 +4,9 @@
     "description": "Salas equipadas para gaming",
     "rooms": [
       {
-        "id": "room-001",
-        "number": "101",
+        "id": "101",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -23,16 +22,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-101-main.jpg",
-          "room-101-angle1.jpg"
-        ]
+        "images": ["room-101-main.jpg", "room-101-angle1.jpg"]
       },
       {
-        "id": "room-002",
-        "number": "102",
+        "id": "102",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -48,16 +43,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-102-main.jpg",
-          "room-102-angle1.jpg"
-        ]
+        "images": ["room-102-main.jpg", "room-102-angle1.jpg"]
       },
       {
-        "id": "room-003",
-        "number": "103",
+        "id": "103",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -73,16 +64,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-103-main.jpg",
-          "room-103-angle1.jpg"
-        ]
+        "images": ["room-103-main.jpg", "room-103-angle1.jpg"]
       },
       {
-        "id": "room-004",
-        "number": "104",
+        "id": "104",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -98,16 +85,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-104-main.jpg",
-          "room-104-angle1.jpg"
-        ]
+        "images": ["room-104-main.jpg", "room-104-angle1.jpg"]
       },
       {
-        "id": "room-005",
-        "number": "105",
+        "id": "105",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -123,16 +106,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-105-main.jpg",
-          "room-105-angle1.jpg"
-        ]
+        "images": ["room-105-main.jpg", "room-105-angle1.jpg"]
       },
       {
-        "id": "room-006",
-        "number": "106",
+        "id": "106",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -148,16 +127,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-106-main.jpg",
-          "room-106-angle1.jpg"
-        ]
+        "images": ["room-106-main.jpg", "room-106-angle1.jpg"]
       },
       {
-        "id": "room-007",
-        "number": "107",
+        "id": "107",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -173,16 +148,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-107-main.jpg",
-          "room-107-angle1.jpg"
-        ]
+        "images": ["room-107-main.jpg", "room-107-angle1.jpg"]
       },
       {
-        "id": "room-008",
-        "number": "108",
+        "id": "108",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -198,16 +169,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-108-main.jpg",
-          "room-108-angle1.jpg"
-        ]
+        "images": ["room-108-main.jpg", "room-108-angle1.jpg"]
       },
       {
-        "id": "room-009",
-        "number": "109",
+        "id": "109",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -223,16 +190,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-109-main.jpg",
-          "room-109-angle1.jpg"
-        ]
+        "images": ["room-109-main.jpg", "room-109-angle1.jpg"]
       },
       {
-        "id": "room-010",
-        "number": "110",
+        "id": "110",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -248,16 +211,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-110-main.jpg",
-          "room-110-angle1.jpg"
-        ]
+        "images": ["room-110-main.jpg", "room-110-angle1.jpg"]
       },
       {
-        "id": "room-011",
-        "number": "111",
+        "id": "111",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -273,16 +232,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-111-main.jpg",
-          "room-111-angle1.jpg"
-        ]
+        "images": ["room-111-main.jpg", "room-111-angle1.jpg"]
       },
       {
-        "id": "room-012",
-        "number": "112",
+        "id": "112",
         "capacity": 4,
-        "hourlyRate": 25.00,
+        "hourlyRate": 25.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 8,
@@ -298,10 +253,7 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "room-112-main.jpg",
-          "room-112-angle1.jpg"
-        ]
+        "images": ["room-112-main.jpg", "room-112-angle1.jpg"]
       }
     ]
   },
@@ -310,10 +262,9 @@
     "description": "Salas para concentración y dar rienda suelta a la creatividad",
     "rooms": [
       {
-        "id": "thinking-room-001",
-        "number": "201",
+        "id": "201",
         "capacity": 2,
-        "hourlyRate": 15.00,
+        "hourlyRate": 15.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 4,
@@ -329,16 +280,12 @@
             "quantity": 2
           }
         ],
-        "images": [
-          "thinking-room-201-main.jpg",
-          "thinking-room-201-angle1.jpg"
-        ]
+        "images": ["thinking-room-201-main.jpg", "thinking-room-201-angle1.jpg"]
       },
       {
-        "id": "thinking-room-002",
-        "number": "202",
+        "id": "202",
         "capacity": 2,
-        "hourlyRate": 15.00,
+        "hourlyRate": 15.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 4,
@@ -354,16 +301,12 @@
             "quantity": 2
           }
         ],
-        "images": [
-          "thinking-room-202-main.jpg",
-          "thinking-room-202-angle1.jpg"
-        ]
+        "images": ["thinking-room-202-main.jpg", "thinking-room-202-angle1.jpg"]
       },
       {
-        "id": "thinking-room-003",
-        "number": "203",
+        "id": "203",
         "capacity": 2,
-        "hourlyRate": 15.00,
+        "hourlyRate": 15.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 4,
@@ -379,16 +322,12 @@
             "quantity": 2
           }
         ],
-        "images": [
-          "thinking-room-203-main.jpg",
-          "thinking-room-203-angle1.jpg"
-        ]
+        "images": ["thinking-room-203-main.jpg", "thinking-room-203-angle1.jpg"]
       },
       {
-        "id": "thinking-room-004",
-        "number": "204",
+        "id": "204",
         "capacity": 2,
-        "hourlyRate": 15.00,
+        "hourlyRate": 15.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 4,
@@ -404,16 +343,12 @@
             "quantity": 2
           }
         ],
-        "images": [
-          "thinking-room-204-main.jpg",
-          "thinking-room-204-angle1.jpg"
-        ]
+        "images": ["thinking-room-204-main.jpg", "thinking-room-204-angle1.jpg"]
       },
       {
-        "id": "thinking-room-005",
-        "number": "205",
+        "id": "205",
         "capacity": 2,
-        "hourlyRate": 15.00,
+        "hourlyRate": 15.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 4,
@@ -429,16 +364,12 @@
             "quantity": 2
           }
         ],
-        "images": [
-          "thinking-room-205-main.jpg",
-          "thinking-room-205-angle1.jpg"
-        ]
+        "images": ["thinking-room-205-main.jpg", "thinking-room-205-angle1.jpg"]
       },
       {
-        "id": "thinking-room-006",
-        "number": "206",
+        "id": "206",
         "capacity": 2,
-        "hourlyRate": 15.00,
+        "hourlyRate": 15.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 4,
@@ -454,10 +385,7 @@
             "quantity": 2
           }
         ],
-        "images": [
-          "thinking-room-206-main.jpg",
-          "thinking-room-206-angle1.jpg"
-        ]
+        "images": ["thinking-room-206-main.jpg", "thinking-room-206-angle1.jpg"]
       }
     ]
   },
@@ -466,10 +394,9 @@
     "description": "Salas para trabajo y reuniones, enfocadas a nómadas digitales y freelancers",
     "rooms": [
       {
-        "id": "working-room-001",
-        "number": "301",
+        "id": "301",
         "capacity": 2,
-        "hourlyRate": 20.00,
+        "hourlyRate": 20.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 6,
@@ -490,16 +417,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "working-room-301-main.jpg",
-          "working-room-301-angle1.jpg"
-        ]
+        "images": ["working-room-301-main.jpg", "working-room-301-angle1.jpg"]
       },
       {
-        "id": "working-room-002",
-        "number": "302",
+        "id": "302",
         "capacity": 2,
-        "hourlyRate": 20.00,
+        "hourlyRate": 20.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 6,
@@ -520,16 +443,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "working-room-302-main.jpg",
-          "working-room-302-angle1.jpg"
-        ]
+        "images": ["working-room-302-main.jpg", "working-room-302-angle1.jpg"]
       },
       {
-        "id": "working-room-003",
-        "number": "303",
+        "id": "303",
         "capacity": 2,
-        "hourlyRate": 20.00,
+        "hourlyRate": 20.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 6,
@@ -550,16 +469,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "working-room-303-main.jpg",
-          "working-room-303-angle1.jpg"
-        ]
+        "images": ["working-room-303-main.jpg", "working-room-303-angle1.jpg"]
       },
       {
-        "id": "working-room-004",
-        "number": "304",
+        "id": "304",
         "capacity": 2,
-        "hourlyRate": 20.00,
+        "hourlyRate": 20.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 6,
@@ -580,16 +495,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "working-room-304-main.jpg",
-          "working-room-304-angle1.jpg"
-        ]
+        "images": ["working-room-304-main.jpg", "working-room-304-angle1.jpg"]
       },
       {
-        "id": "working-room-005",
-        "number": "305",
+        "id": "305",
         "capacity": 2,
-        "hourlyRate": 20.00,
+        "hourlyRate": 20.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 6,
@@ -610,16 +521,12 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "working-room-305-main.jpg",
-          "working-room-305-angle1.jpg"
-        ]
+        "images": ["working-room-305-main.jpg", "working-room-305-angle1.jpg"]
       },
       {
-        "id": "working-room-006",
-        "number": "306",
+        "id": "306",
         "capacity": 2,
-        "hourlyRate": 20.00,
+        "hourlyRate": 20.0,
         "status": "available",
         "minHours": 1,
         "maxHours": 6,
@@ -640,10 +547,7 @@
             "quantity": 1
           }
         ],
-        "images": [
-          "working-room-306-main.jpg",
-          "working-room-306-angle1.jpg"
-        ]
+        "images": ["working-room-306-main.jpg", "working-room-306-angle1.jpg"]
       }
     ]
   }

@@ -29,12 +29,20 @@ class RoomsDatabase {
   }
 
   async getAllRooms() {
-    return Object.values(this.categories).reduce((allRooms, category) => {
-      return allRooms.concat(category.rooms.map(room => ({
-        ...room,
-        category: category.name
-      })));
-    }, []);
+    try {
+      // Transformar la estructura de categorías a un array plano de habitaciones
+      const allRooms = Object.values(this.categories).reduce((allRooms, category) => {
+        return allRooms.concat(category.rooms.map(room => ({
+          ...room,
+          category: category.name
+        })));
+      }, []);
+      
+      return allRooms;
+    } catch (error) {
+      console.error("Error en getAllRooms:", error);
+      return []; // Retornar array vacío en caso de error
+    }
   }
 
   async getRoomById(id) {
