@@ -8,83 +8,119 @@ const roomsPath = path.join(__dirname, '../data/rooms.json');
 
 class RoomsDatabase {
   constructor() {
-    this.rooms = [];
+    this.categories = {};
     this.loadData();
   }
 
   async loadData() {
     try {
       const data = await fs.readFile(roomsPath, 'utf8');
-      this.rooms = JSON.parse(data);
+      this.categories = JSON.parse(data);
     } catch (error) {
       if (error.code === 'ENOENT') {
-        this.rooms = [];
+        this.categories = {};
         await this.saveData();
       }
     }
   }
 
   async saveData() {
-    await fs.writeFile(roomsPath, JSON.stringify(this.rooms, null, 2));
+    await fs.writeFile(roomsPath, JSON.stringify(this.categories, null, 2));
   }
 
   async getAllRooms() {
-    return this.rooms;
+    return Object.values(this.categories).reduce((allRooms, category) => {
+      return allRooms.concat(category.rooms.map(room => ({
+        ...room,
+        category: category.name
+      })));
+    }, []);
   }
 
   async getRoomById(id) {
-    return this.rooms.find(room => room.id === id);
+    for (const category of Object.values(this.categories)) {
+      const room = category.rooms.find(room => room.id === id);
+      if (room) return { ...room, category: category.name };
+    }
+    return null;
   }
 
   async addRoom(roomData) {
+    const { category, ...data } = roomData;
+    if (!this.categories[category]) {
+      throw new Error('Categoría inválida');
+    }
+
     const room = {
       id: `room-${uuidv4()}`,
-      ...roomData,
+      ...data,
       status: 'available'
     };
-    this.rooms.push(room);
+
+    this.categories[category].rooms.push(room);
     await this.saveData();
-    return room;
+    return { ...room, category };
   }
 
   async updateRoom(id, roomData) {
-    const index = this.rooms.findIndex(room => room.id === id);
-    if (index === -1) return null;
-
-    this.rooms[index] = { ...this.rooms[index], ...roomData };
-    await this.saveData();
-    return this.rooms[index];
+    for (const categoryKey of Object.keys(this.categories)) {
+      const roomIndex = this.categories[categoryKey].rooms.findIndex(room => room.id === id);
+      if (roomIndex !== -1) {
+        const { category, ...data } = roomData;
+        
+        if (category && category !== categoryKey) {
+          // Mover a nueva categoría
+          const room = this.categories[categoryKey].rooms.splice(roomIndex, 1)[0];
+          const updatedRoom = { ...room, ...data };
+          this.categories[category].rooms.push(updatedRoom);
+        } else {
+          // Actualizar en la misma categoría
+          this.categories[categoryKey].rooms[roomIndex] = {
+            ...this.categories[categoryKey].rooms[roomIndex],
+            ...data
+          };
+        }
+        
+        await this.saveData();
+        return this.getRoomById(id);
+      }
+    }
+    return null;
   }
 
   async deleteRoom(id) {
-    const index = this.rooms.findIndex(room => room.id === id);
-    if (index === -1) return false;
-
-    this.rooms.splice(index, 1);
-    await this.saveData();
-    return true;
+    for (const category of Object.values(this.categories)) {
+      const index = category.rooms.findIndex(room => room.id === id);
+      if (index !== -1) {
+        category.rooms.splice(index, 1);
+        await this.saveData();
+        return true;
+      }
+    }
+    return false;
   }
 
   async filterRooms(filters) {
-    return this.rooms.filter(room => {
-      let matches = true;
-      if (filters.category) {
-        matches = matches && room.category === filters.category;
-      }
-      if (filters.status) {
-        matches = matches && room.status === filters.status;
-      }
-      if (filters.maxHourlyRate) {
-        matches = matches && room.hourlyRate <= filters.maxHourlyRate;
-      }
-      if (filters.minHourlyRate) {
-        matches = matches && room.hourlyRate >= filters.minHourlyRate;
-      }
-      if (filters.capacity) {
-        matches = matches && room.capacity >= filters.capacity;
-      }
-      return matches;
-    });
+    let rooms = await this.getAllRooms();
+    
+    if (filters.category) {
+      rooms = rooms.filter(room => room.category === filters.category);
+    }
+    
+    if (filters.status) {
+      rooms = rooms.filter(room => room.status === filters.status);
+    }
+    if (filters.maxHourlyRate) {
+      rooms = rooms.filter(room => room.hourlyRate <= filters.maxHourlyRate);
+    }
+    if (filters.minHourlyRate) {
+      rooms = rooms.filter(room => room.hourlyRate >= filters.minHourlyRate);
+    }
+    if (filters.capacity) {
+      rooms = rooms.filter(room => room.capacity >= filters.capacity);
+    }
+    
+    return rooms;
   }
 
   async checkAvailability(roomId, startTime, endTime) {
