@@ -42,5 +42,5 @@ coverage
 .DS_Store
 Thumbs.db
 
-# users data
-src/data/users.json
+# data
+src/data/
