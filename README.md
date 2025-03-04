@@ -234,6 +234,202 @@ GET /health
 }
 ```
 
+### Salas (Rooms)
+
+```bash
+# Obtener todas las salas
+GET /api/rooms
+# Filtros opcionales: ?category=gaming&maxPrice=30&capacity=4&status=available
+
+# Obtener una sala específica
+GET /api/rooms/:id
+
+# Crear sala (requiere autenticación)
+POST /api/rooms
+Content-Type: application/json
+{
+  "number": "101",
+  "category": "gaming",
+  "capacity": 4,
+  "hourlyRate": 25.00,
+  "minHours": 1,
+  "maxHours": 8,
+  "equipment": [
+    {
+      "type": "console",
+      "name": "PS5",
+      "quantity": 1
+    }
+  ],
+  "images": ["room-101-main.jpg"]
+}
+
+# Actualizar sala (requiere autenticación)
+PUT /api/rooms/:id
+
+# Eliminar sala (requiere autenticación)
+DELETE /api/rooms/:id
+
+# Verificar disponibilidad
+GET /api/rooms/:id/availability?startTime=2024-02-20T14:00:00Z&endTime=2024-02-20T16:00:00Z
+```
+
+### Servicios Adicionales
+
+```bash
+# Obtener todos los servicios
+GET /api/services
+# Filtros opcionales: ?category=equipment
+
+# Obtener un servicio específico
+GET /api/services/:id
+
+# Crear servicio (requiere autenticación)
+POST /api/services
+Content-Type: application/json
+{
+  "name": "Auriculares Gaming Pro",
+  "description": "Auriculares gaming con cancelación de ruido",
+  "price": 5.00,
+  "category": "equipment",
+  "stock": 10,
+  "specifications": {
+    "brand": "HyperX",
+    "features": ["7.1 Surround"]
+  }
+}
+
+# Actualizar servicio (requiere autenticación)
+PUT /api/services/:id
+
+# Eliminar servicio (requiere autenticación)
+DELETE /api/services/:id
+```
+
+### Productos (Snacks y Bebidas)
+
+```bash
+# Obtener todos los productos
+GET /api/products
+# Filtros opcionales: ?category=beverage&maxPrice=5&inStock=true
+
+# Obtener un producto específico
+GET /api/products/:id
+
+# Crear producto (requiere autenticación)
+POST /api/products
+Content-Type: application/json
+{
+  "name": "Red Bull",
+  "description": "Bebida energética 250ml",
+  "price": 3.50,
+  "category": "beverage",
+  "image": "redbull-250ml.jpg",
+  "stock": 50
+}
+
+# Actualizar producto (requiere autenticación)
+PUT /api/products/:id
+
+# Actualizar stock (requiere autenticación)
+PATCH /api/products/:id/stock
+{
+  "quantity": 10  # Puede ser negativo para reducir stock
+}
+
+# Eliminar producto (requiere autenticación)
+DELETE /api/products/:id
+```
+
+### Reservas (Bookings)
+
+```bash
+# Crear reserva
+POST /api/bookings
+Content-Type: application/json
+{
+  "roomId": "room-001",
+  "startTime": "2024-02-20T14:00:00Z",
+  "duration": 2,
+  "services": [
+    {
+      "serviceId": "service-001",
+      "quantity": 1
+    }
+  ],
+  "products": [
+    {
+      "productId": "prod-001",
+      "quantity": 2
+    }
+  ]
+}
+
+# Obtener mis reservas
+GET /api/bookings/my-bookings
+
+# Cancelar reserva
+POST /api/bookings/:id/cancel
+
+# Extender tiempo de reserva
+POST /api/bookings/:id/extend
+{
+  "additionalHours": 2
+}
+
+# Añadir items a reserva activa
+POST /api/bookings/:id/items
+{
+  "services": [
+    {
+      "serviceId": "service-002",
+      "quantity": 1
+    }
+  ],
+  "products": [
+    {
+      "productId": "prod-002",
+      "quantity": 1
+    }
+  ]
+}
+
+# Obtener estadísticas de ocupación
+GET /api/bookings/stats/occupancy?roomId=room-001&startDate=2024-02-01&endDate=2024-02-28
+```
+
+#### Respuestas de Reservas
+
+```json
+// Éxito al crear reserva (201 Created)
+{
+  "id": "book-001",
+  "status": "pending",
+  "startTime": "2024-02-20T14:00:00Z",
+  "duration": 2,
+  "endTime": "2024-02-20T16:00:00Z",
+  "basePrice": 50.00,
+  "servicesTotal": 5.00,
+  "productsTotal": 7.00,
+  "totalPrice": 62.00
+}
+
+// Error - Sala no disponible (409 Conflict)
+{
+  "error": "La sala no está disponible para el horario seleccionado",
+  "code": "ROOM_NOT_AVAILABLE"
+}
+
+// Estadísticas de ocupación (200 OK)
+{
+  "roomId": "room-001",
+  "totalBookings": 24,
+  "totalHours": 96,
+  "totalRevenue": 2400.00,
+  "occupancyRate": 0.75
+}
+```
+
 ## Estructura del Proyecto
 
 ```
