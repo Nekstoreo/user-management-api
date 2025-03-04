@@ -1,0 +1,16 @@
+[
+  {
+    "id": "service-001",
+    "name": "Auriculares Gaming Pro",
+    "description": "Auriculares gaming con cancelación de ruido y micrófono",
+    "price": 5.00,
+    "category": "equipment",
+    "available": true,
+    "stock": 10,
+    "specifications": {
+      "brand": "HyperX",
+      "model": "Cloud Alpha",
+      "features": ["7.1 Surround", "Noise Cancelling"]
+    }
+  }
+]

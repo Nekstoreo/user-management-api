@@ -1,0 +1,43 @@
+{
+  "gaming": {
+    "name": "Gaming Rooms",
+    "description": "Salas equipadas para gaming",
+    "rooms": [
+      {
+        "id": "room-001",
+        "number": "101",
+        "capacity": 4,
+        "hourlyRate": 25.00,
+        "status": "available",
+        "minHours": 1,
+        "maxHours": 8,
+        "equipment": [
+          {
+            "type": "console",
+            "name": "PS5",
+            "quantity": 1
+          },
+          {
+            "type": "screen",
+            "name": "4K TV 55\"",
+            "quantity": 1
+          }
+        ],
+        "images": [
+          "room-101-main.jpg",
+          "room-101-angle1.jpg"
+        ]
+      }
+    ]
+  },
+  "thinking": {
+    "name": "Thinking Rooms",
+    "description": "Salas para estudio y concentración",
+    "rooms": []
+  },
+  "working": {
+    "name": "Working Rooms",
+    "description": "Salas para trabajo y reuniones",
+    "rooms": []
+  }
+}

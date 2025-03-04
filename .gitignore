@@ -43,4 +43,4 @@ coverage
 Thumbs.db
 
 # data
-src/data/
+# src/data/

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "prod-001",
+    "name": "Red Bull",
+    "description": "Bebida energética 250ml",
+    "price": 3.50,
+    "category": "beverage",
+    "image": "redbull-250ml.jpg",
+    "stock": 50,
+    "nutritionalInfo": {
+      "calories": "110 kcal",
+      "sugar": "27g",
+      "caffeine": "80mg"
+    }
+  }
+]
