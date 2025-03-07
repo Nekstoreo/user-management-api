@@ -2,21 +2,21 @@
   {
     "id": "book-001",
     "userId": "user-123",
-    "roomId": "room-001",
+    "roomId": "101",
     "status": "completed",
     "startTime": "2024-02-20T14:00:00Z",
     "duration": 2,
     "endTime": "2024-02-20T16:00:00Z",
     "services": [
       {
-        "serviceId": "service-001",
+        "serviceId": "001",
         "quantity": 1,
         "price": 5
       }
     ],
     "products": [
       {
-        "productId": "prod-001",
+        "productId": "001",
         "quantity": 2,
         "price": 7
       }
