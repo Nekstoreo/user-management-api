@@ -46,12 +46,15 @@ class RoomsDatabase {
   }
 
   async getRoomById(id) {
+    const roomId = String(id);
+  
     for (const category of Object.values(this.categories)) {
-      const room = category.rooms.find(room => room.id === id);
+      const room = category.rooms.find(room => String(room.id) === roomId);
       if (room) return { ...room, category: category.name };
     }
     return null;
   }
+  
 
   async addRoom(roomData) {
     const { category, ...data } = roomData;
