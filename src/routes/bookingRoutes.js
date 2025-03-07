@@ -8,14 +8,15 @@ import { logger } from '../utils/logger.js';
 const router = express.Router();
 
 // Crear una reserva
-router.post('/', auth, [
+router.post('/', [
   body('roomId').notEmpty().withMessage('Se requiere el ID de la sala'),
   body('startTime').isISO8601().withMessage('Fecha de inicio inválida'),
-  body('duration').isInt({ min: 1 }).withMessage('Duración inválida')
+  body('hours').isInt({ min: 1 }).withMessage('Horas inválidas')
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      await logger.log('WARN', 'Booking validations not met', { errors: errors.array() });
       return res.status(400).json({ 
         errors: errors.array(),
         code: 'VALIDATION_ERROR'
@@ -24,6 +25,7 @@ router.post('/', auth, [
 
     const room = await roomsDatabase.getRoomById(req.body.roomId);
     if (!room) {
+      await logger.log('WARN', 'Room not found while creating booking', { roomId: req.body.roomId });
       return res.status(404).json({
         error: 'Sala no encontrada',
         code: 'ROOM_NOT_FOUND'
@@ -33,10 +35,11 @@ router.post('/', auth, [
     const booking = await bookingsDatabase.createBooking({
       ...req.body,
       userId: req.user.id,
-      basePrice: room.hourlyRate * req.body.duration
+      basePrice: room.hourlyRate * req.body.hours
     });
 
     if (!booking) {
+      await logger.log('WARN', 'Room not available for booking', { roomId: req.body.roomId });
       return res.status(409).json({
         error: 'La sala no está disponible para el horario seleccionado',
         code: 'ROOM_NOT_AVAILABLE'
@@ -73,6 +76,7 @@ router.post('/:id/cancel', auth, async (req, res) => {
   try {
     const booking = await bookingsDatabase.cancelBooking(req.params.id);
     if (!booking) {
+      await logger.log('WARN', 'Booking not found or not cancellable', { bookingId: req.params.id });
       return res.status(400).json({
         error: 'No se puede cancelar la reserva',
         code: 'INVALID_CANCELLATION'
@@ -101,6 +105,7 @@ router.post('/:id/extend', auth, [
     );
 
     if (!booking) {
+      await logger.log('WARN', 'Booking not found or cannot be extended', { bookingId: req.params.id });
       return res.status(400).json({
         error: 'No se puede extender la reserva',
         code: 'INVALID_EXTENSION'
@@ -130,6 +135,7 @@ router.post('/:id/items', auth, async (req, res) => {
     );
 
     if (!booking) {
+      await logger.log('WARN', 'Booking not found or cannot add items', { bookingId: req.params.id });
       return res.status(400).json({
         error: 'No se pueden añadir items a la reserva',
         code: 'INVALID_ITEMS_ADDITION'
@@ -153,6 +159,7 @@ router.get('/stats/occupancy', auth, async (req, res) => {
     const { roomId, startDate, endDate } = req.query;
     
     if (!roomId || !startDate || !endDate) {
+      await logger.log('WARN', 'Missing occupancy stats params', { roomId, startDate, endDate });
       return res.status(400).json({
         error: 'Se requieren roomId, startDate y endDate',
         code: 'MISSING_PARAMS'
