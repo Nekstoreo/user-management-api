@@ -34,7 +34,7 @@ router.post('/', [
 
     const booking = await bookingsDatabase.createBooking({
       ...req.body,
-      userId: req.user.id,
+      userId: req.user?.id,
       basePrice: room.hourlyRate * req.body.hours
     });
 

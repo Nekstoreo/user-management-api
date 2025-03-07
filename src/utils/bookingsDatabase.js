@@ -55,8 +55,8 @@ class BookingsDatabase {
     }
   }
 
-  async checkAvailability(roomId, startTime, duration) {
-    const endTime = new Date(new Date(startTime).getTime() + duration * 3600000);
+  async checkAvailability(roomId, startTime, hours) {
+    const endTime = new Date(new Date(startTime).getTime() + hours * 3600000);
     const conflictingBooking = this.bookings.find(booking => 
       booking.roomId === roomId &&
       booking.status !== 'cancelled' &&
@@ -69,10 +69,10 @@ class BookingsDatabase {
   }
 
   async createBooking(bookingData) {
-    const { userId, roomId, startTime, duration, services = [], products = [] } = bookingData;
+    const { userId, roomId, startTime, hours, services = [], products = [], basePrice } = bookingData;
     
     // Verificar disponibilidad
-    const isAvailable = await this.checkAvailability(roomId, startTime, duration);
+    const isAvailable = await this.checkAvailability(roomId, startTime, hours);
     if (!isAvailable) return null;
 
     const booking = {
@@ -81,18 +81,15 @@ class BookingsDatabase {
       roomId,
       status: 'pending',
       startTime: new Date(startTime).toISOString(),
-      duration,
-      endTime: new Date(new Date(startTime).getTime() + duration * 3600000).toISOString(),
-      services,
-      products,
-      basePrice: bookingData.basePrice,
-      servicesTotal: services.reduce((sum, s) => sum + s.price * s.quantity, 0),
-      productsTotal: products.reduce((sum, p) => sum + p.price * p.quantity, 0),
+      hours,
+      endTime: new Date(new Date(startTime).getTime() + hours * 3600000).toISOString(),
+      services: services || [],
+      products: products || [],
+      basePrice: basePrice || 0,
+      totalPrice: basePrice || 0,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
-
-    booking.totalPrice = booking.basePrice + booking.servicesTotal + booking.productsTotal;
     
     this.bookings.push(booking);
     await this.saveData();

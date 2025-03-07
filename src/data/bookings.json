@@ -1,12 +1,11 @@
 [
   {
-    "id": "book-001",
-    "userId": "user-123",
+    "id": "001",
+    "userId": "001",
     "roomId": "101",
     "status": "completed",
     "startTime": "2024-02-20T14:00:00Z",
-    "duration": 2,
-    "endTime": "2024-02-20T16:00:00Z",
+    "hours": 2,
     "services": [
       {
         "serviceId": "001",
@@ -22,10 +21,36 @@
       }
     ],
     "basePrice": 50,
-    "servicesTotal": 5,
-    "productsTotal": 7,
     "totalPrice": 62,
     "createdAt": "2024-02-20T10:00:00Z",
     "updatedAt": "2024-02-20T10:00:00Z"
+  },
+  {
+    "id": "book-acafa386-50f0-4c7f-8d87-3ded944a4c13",
+    "roomId": "305",
+    "status": "pending",
+    "startTime": "2025-07-04T03:00:00.000Z",
+    "hours": 1,
+    "endTime": "2025-07-04T04:00:00.000Z",
+    "services": [],
+    "products": [],
+    "basePrice": 20,
+    "totalPrice": 20,
+    "createdAt": "2025-03-07T17:10:07.225Z",
+    "updatedAt": "2025-03-07T17:10:07.225Z"
+  },
+  {
+    "id": "book-f2242700-73ed-4078-a47e-611cd0ea2fb8",
+    "roomId": "305",
+    "status": "pending",
+    "startTime": "2025-07-03T17:30:00.000Z",
+    "hours": 6,
+    "endTime": "2025-07-03T23:30:00.000Z",
+    "services": [],
+    "products": [],
+    "basePrice": 120,
+    "totalPrice": 120,
+    "createdAt": "2025-03-07T17:16:18.177Z",
+    "updatedAt": "2025-03-07T17:16:18.177Z"
   }
 ]
