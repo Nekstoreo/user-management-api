@@ -6,13 +6,10 @@ import { logger } from '../utils/logger.js';
 
 const router = express.Router();
 
-const VALID_CATEGORIES = ['equipment', 'console', 'streaming'];
-
-// Obtener todos los servicios
+// Obtener todos los servicios (devuelve el objeto con las tres categorías)
 router.get('/', async (req, res) => {
   try {
-    const { category } = req.query;
-    const services = await servicesDatabase.filterServices(category);
+    const services = await servicesDatabase.getAllServices();
     res.json(services);
   } catch (error) {
     await logger.log('ERROR', 'Error getting services', { error: error.message });
@@ -23,17 +20,79 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Obtener un servicio específico
+// Endpoint que devuelve solo la categoría Gaming
+router.get('/gaming', async (req, res) => {
+  try {
+    const allServices = await servicesDatabase.getAllServices();
+    res.json(allServices.gaming || []);
+  } catch (error) {
+    await logger.log('ERROR', 'Error getting gaming services', { error: error.message });
+    res.status(500).json({
+      error: 'Error al obtener servicios gaming',
+      code: 'SERVER_ERROR'
+    });
+  }
+});
+
+// Endpoint que devuelve solo la categoría Working
+router.get('/working', async (req, res) => {
+  try {
+    const allServices = await servicesDatabase.getAllServices();
+    res.json(allServices.working || []);
+  } catch (error) {
+    await logger.log('ERROR', 'Error getting working services', { error: error.message });
+    res.status(500).json({
+      error: 'Error al obtener servicios working',
+      code: 'SERVER_ERROR'
+    });
+  }
+});
+
+// Endpoint que devuelve solo la categoría Thinking
+router.get('/thinking', async (req, res) => {
+  try {
+    const allServices = await servicesDatabase.getAllServices();
+    res.json(allServices.thinking || []);
+  } catch (error) {
+    await logger.log('ERROR', 'Error getting thinking services', { error: error.message });
+    res.status(500).json({
+      error: 'Error al obtener servicios thinking',
+      code: 'SERVER_ERROR'
+    });
+  }
+});
+
+// (Opcional) Endpoint que devuelve las tres categorías agrupadas
+router.get('/categories', async (req, res) => {
+  try {
+    const services = await servicesDatabase.getAllServices();
+    res.json(services);
+  } catch (error) {
+    await logger.log('ERROR', 'Error getting categories', { error: error.message });
+    res.status(500).json({
+      error: 'Error al obtener las categorías',
+      code: 'SERVER_ERROR'
+    });
+  }
+});
+
+// Mover el endpoint de obtener un servicio específico para evitar conflictos con los nuevos endpoints
 router.get('/:id', async (req, res) => {
   try {
-    const service = await servicesDatabase.getServiceById(req.params.id);
-    if (!service) {
+    // Iterar por cada categoría para buscar el servicio
+    const allServices = await servicesDatabase.getAllServices();
+    let found = null;
+    for (const key in allServices) {
+      found = allServices[key].find(service => service.id === req.params.id);
+      if (found) break;
+    }
+    if (!found) {
       return res.status(404).json({ 
         error: 'Servicio no encontrado',
         code: 'SERVICE_NOT_FOUND'
       });
     }
-    res.json(service);
+    res.json(found);
   } catch (error) {
     await logger.log('ERROR', 'Error getting service', { error: error.message });
     res.status(500).json({ 
@@ -48,7 +107,6 @@ router.post('/', auth, [
   body('name').notEmpty().withMessage('El nombre es requerido'),
   body('description').notEmpty().withMessage('La descripción es requerida'),
   body('price').isFloat({ min: 0 }).withMessage('El precio debe ser un número positivo'),
-  body('category').isIn(VALID_CATEGORIES).withMessage('Categoría inválida'),
   body('stock').isInt({ min: 0 }).withMessage('El stock debe ser un número positivo')
 ], async (req, res) => {
   try {

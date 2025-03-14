@@ -7,6 +7,7 @@ import roomRoutes from './routes/roomRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
+import foodRoutes from './routes/foodRoutes.js';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use('/api/rooms', roomRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/food', foodRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

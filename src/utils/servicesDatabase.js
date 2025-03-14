@@ -64,12 +64,6 @@ class ServicesDatabase {
     await this.saveData();
     return true;
   }
-
-  async filterServices(category) {
-    return this.services.filter(service => 
-      !category || service.category === category
-    );
-  }
 }
 
 export default new ServicesDatabase();

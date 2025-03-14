@@ -1,16 +1,89 @@
-[
-  {
-    "id": "001",
-    "name": "Auriculares Gaming Pro",
-    "description": "Auriculares gaming con cancelación de ruido y micrófono",
-    "price": 5.00,
-    "category": "equipment",
-    "available": true,
-    "stock": 10,
-    "specifications": {
-      "brand": "HyperX",
-      "model": "Cloud Alpha",
-      "features": ["7.1 Surround", "Noise Cancelling"]
+{
+  "gaming": [
+    {
+      "id": "g1",
+      "name": "Gaming Mouse",
+      "description": "High-precision mouse for intense gaming",
+      "price": 15.00,
+      "available": true,
+      "stock": 10,
+      "specifications": "Iluminación RGB, DPI ajustable, diseño ergonómico"
+    },
+    {
+      "id": "g2",
+      "name": "Gaming Keyboard",
+      "description": "Mechanical keyboard with key customization",
+      "price": 25.00,
+      "available": true,
+      "stock": 8,
+      "specifications": "Interruptores mecánicos, RGB, anti-ghosting"
+    },
+    {
+      "id": "g3",
+      "name": "Gaming Headset",
+      "description": "Surround sound headset for an immersive experience",
+      "price": 30.00,
+      "available": true,
+      "stock": 5,
+      "specifications": "Cancelación de ruido, inalámbrico, cómodo"
     }
-  }
-]
+  ],
+  "working": [
+    {
+      "id": "w1",
+      "name": "Ergonomic Chair",
+      "description": "Comfortable chair for long working hours",
+      "price": 45.00,
+      "available": true,
+      "stock": 3,
+      "specifications": "Soporte lumbar, altura ajustable, material transpirable"
+    },
+    {
+      "id": "w2",
+      "name": "Standing Desk",
+      "description": "Adjustable desk for standing or sitting",
+      "price": 150.00,
+      "available": true,
+      "stock": 2,
+      "specifications": "Ajuste eléctrico, amplia superficie, construcción robusta"
+    },
+    {
+      "id": "w3",
+      "name": "Office Monitor",
+      "description": "High-definition monitor to maximize productivity",
+      "price": 120.00,
+      "available": true,
+      "stock": 4,
+      "specifications": "Pantalla de 24 pulgadas, Full HD, filtro de luz azul"
+    }
+  ],
+  "thinking": [
+    {
+      "id": "t1",
+      "name": "E-Reader",
+      "description": "Lightweight device for reading e-books",
+      "price": 80.00,
+      "available": true,
+      "stock": 6,
+      "specifications": "Pantalla E-Ink, iluminación ajustable, portátil"
+    },
+    {
+      "id": "t2",
+      "name": "Sketch Tablet",
+      "description": "Ideal tablet for artists and designers",
+      "price": 200.00,
+      "available": true,
+      "stock": 4,
+      "specifications": "Alta sensibilidad a la presión, batería duradera, botones personalizables"
+    },
+    {
+      "id": "t3",
+      "name": "Acoustic Book Stand",
+      "description": "Perfect stand to keep the book open while reading",
+      "price": 40.00,
+      "available": true,
+      "stock": 10,
+      "specifications": "Ángulo ajustable, ligero y robusto"
+    }
+  ]
+}
