@@ -27,5 +27,55 @@
     "totalPrice": 62,
     "createdAt": "2024-02-20T10:00:00Z",
     "updatedAt": "2024-02-20T10:00:00Z"
+  },
+  {
+    "id": "book-f64d461d-b590-437e-a63a-8509cce37622",
+    "userId": "c418e5bc-b7cf-4b49-9931-5db62276db1b",
+    "roomId": 304,
+    "status": "pending",
+    "startTime": "2025-03-15T03:00:00.000Z",
+    "duration": 1,
+    "endTime": "2025-03-15T04:00:00.000Z",
+    "services": [
+      {
+        "serviceId": "g1",
+        "quantity": 1,
+        "price": 15
+      },
+      {
+        "serviceId": "g2",
+        "quantity": 1,
+        "price": 25
+      },
+      {
+        "serviceId": "g3",
+        "quantity": 1,
+        "price": 30
+      }
+    ],
+    "products": [],
+    "basePrice": 20,
+    "servicesTotal": 70,
+    "productsTotal": 0,
+    "createdAt": "2025-03-14T19:14:44.718Z",
+    "updatedAt": "2025-03-14T19:14:44.718Z",
+    "totalPrice": 90
+  },
+  {
+    "id": "book-0dce4a98-faff-49bc-9807-34a0b62695b5",
+    "userId": "c418e5bc-b7cf-4b49-9931-5db62276db1b",
+    "roomId": 102,
+    "status": "active",
+    "startTime": "2025-03-14T19:30:00.000Z",
+    "duration": 1,
+    "endTime": "2025-03-14T20:30:00.000Z",
+    "services": [],
+    "products": [],
+    "basePrice": 25,
+    "servicesTotal": 0,
+    "productsTotal": 0,
+    "createdAt": "2025-03-14T19:17:33.940Z",
+    "updatedAt": "2025-03-14T19:17:33.940Z",
+    "totalPrice": 25
   }
 ]
