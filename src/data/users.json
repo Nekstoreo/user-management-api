@@ -5,5 +5,19 @@
     "password": "$2b$08$ROXzSRNXkbFt3VKMsar3ROVRosa.gbbfMXshREOL1e9nBfPCb/js.",
     "phone": "3112223344",
     "id": "c418e5bc-b7cf-4b49-9931-5db62276db1b"
+  },
+  {
+    "name": "Esteban Quiceno",
+    "email": "aqua@konosuba.com",
+    "password": "$2b$08$czEnxSel.uxhyskCizFhPuVK3vbPIkIcLOz3cNmVTTpkfhQDiQ8Ke",
+    "phone": "3000000000",
+    "id": "9cfb74c9-3453-40ff-b0de-6e30d4cad2e0"
+  },
+  {
+    "name": "Simon Tamara",
+    "email": "simon@konosuba.com",
+    "password": "$2b$08$mQFKkBxvJ1cvp0r34oSw4OZO0q.C8yV72STL5MMTuLyG0KPUS8lO2",
+    "phone": "3001112233",
+    "id": "d22d048e-71ed-4962-8dfb-7827300e2609"
   }
 ]

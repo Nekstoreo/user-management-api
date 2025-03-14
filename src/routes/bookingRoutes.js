@@ -68,6 +68,20 @@ router.get('/my-bookings', auth, async (req, res) => {
   }
 });
 
+// Obtener historial de reservas del usuario
+router.get('/history', auth, async (req, res) => {
+  try {
+    const bookings = await bookingsDatabase.getBookingHistoryByUser(req.user.id);
+    res.json(bookings);
+  } catch (error) {
+    await logger.log('ERROR', 'Error getting booking history', { error: error.message });
+    res.status(500).json({
+      error: 'Error al obtener el historial de reservas',
+      code: 'SERVER_ERROR'
+    });
+  }
+});
+
 // Cancelar reserva
 router.post('/:id/cancel', auth, async (req, res) => {
   try {

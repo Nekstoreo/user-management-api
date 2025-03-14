@@ -103,6 +103,10 @@ class BookingsDatabase {
     return this.bookings.filter(booking => booking.userId === userId);
   }
 
+  async getBookingHistoryByUser(userId) {
+    return this.bookings.filter(booking => booking.userId === userId);
+  }
+
   async getBookingsByStatus(status) {
     return this.bookings.filter(booking => booking.status === status);
   }
