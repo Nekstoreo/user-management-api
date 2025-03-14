@@ -2,7 +2,7 @@ import express from 'express';
 import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import database from '../utils/database.js';
+import database from '../utils/userDatabase.js';
 import { auth } from '../middleware/auth.js';
 import { VALIDATION_POLICIES, ERROR_MESSAGES } from '../utils/validationPolicies.js';
 import { logger } from '../utils/logger.js';
